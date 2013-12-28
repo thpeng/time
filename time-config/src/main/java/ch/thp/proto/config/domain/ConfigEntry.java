@@ -28,5 +28,14 @@ public class ConfigEntry implements Serializable{
     private String uuId; 
     private String configKey; 
     private String configValue; 
-    private String id; 
+    private String description;
+
+    public ConfigEntry(String configKey, String configValue, String description) {
+        this.configKey = configKey;
+        this.configValue = configValue;
+        this.description = description;
+    }
+
+    public ConfigEntry() {
+    }
 }
