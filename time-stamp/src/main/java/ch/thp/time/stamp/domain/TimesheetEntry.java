@@ -6,13 +6,15 @@
 
 package ch.thp.time.stamp.domain;
 
+import ch.thp.time.utilties.database.LocalDateConverter;
+import ch.thp.time.utilties.database.DurationConverter;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 import org.joda.time.Duration;
-import org.joda.time.convert.DurationConverter;
+import org.joda.time.LocalDate;
 
 /**
  *
@@ -27,6 +29,9 @@ public class TimesheetEntry {
     private String uuId;
     @Convert(converter = DurationConverter.class)
     private Duration duration; 
+    @Convert(converter = LocalDateConverter.class)
+    private LocalDate entryDate; 
+    private String description;
     
     
 }

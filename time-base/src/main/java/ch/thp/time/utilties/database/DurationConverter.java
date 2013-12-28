@@ -44,6 +44,7 @@ public class DurationConverter implements Converter {
 
     }
 
+    @Override
     public boolean isMutable() {
         return false;
     }
