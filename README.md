@@ -14,12 +14,12 @@ Technology
 
 Tasks 
 -----
-[x] Maven Setup
-[x] Config Module, based on Producer mechanism
-[x] Arquillian Test for Config Module
-[ ] Refactor arq tests, (server, verify the guava and derby problem)
-[ ] war
-[ ] Log: slf4j, logback
-[ ] Setup a self-contained DB, either h2 or derby. 
-[ ] Simplified domain model 
-[ ] Login, either vs a realm, otherwise what?
+- [x] Maven Setup
+- [x] Config Module, based on Producer mechanism
+- [x] Arquillian Test for Config Module
+- [ ] Refactor arq tests, (server, verify the guava and derby problem)
+- [ ] war
+- [ ] Log: slf4j, logback
+- [ ] Setup a self-contained DB, either h2 or derby. 
+- [ ] Simplified domain model 
+- [ ] Login, either vs a realm, otherwise what?
