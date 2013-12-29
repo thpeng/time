@@ -32,7 +32,7 @@ public class ConfigBean {
      * to the database to prevent reading stale data from the cache.
      */
     public ConfigEntry getConfigForKey(String key) {
-        return em.createNamedQuery("getByKey", ConfigEntry.class).setParameter("key", key)
+        return em.createNamedQuery("configEntry.getByKey", ConfigEntry.class).setParameter("key", key)
                 .setHint("javax.persistence.cache.storeMode", "REFRESH").getSingleResult();
     }
 }

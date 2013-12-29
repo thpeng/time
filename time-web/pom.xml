@@ -21,11 +21,11 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
         </dependency>
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
+         <dependency>
+            <groupId>org.jboss.spec</groupId>
+            <artifactId>jboss-javaee-all-7.0</artifactId>
             <scope>provided</scope>
-        </dependency>
+        </dependency>  
           
         <dependency>
             <groupId>org.slf4j</groupId>

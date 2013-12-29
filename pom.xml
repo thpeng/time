@@ -48,9 +48,9 @@
                 <version>15.0</version>
             </dependency>
             <dependency>
-                <groupId>javax</groupId>
-                <artifactId>javaee-api</artifactId>
-                <version>7.0</version>
+                <groupId>org.jboss.spec</groupId>
+                <artifactId>jboss-javaee-all-7.0</artifactId>
+                <version>1.0.0.Beta2</version>
             </dependency>
             <dependency>
                 <groupId>com.h2database</groupId>
@@ -86,7 +86,7 @@
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
-                <version>1.7.5</version>
+                <version>1.5.11</version>
             </dependency>
             <dependency>
                 <groupId>ch.qos.logback</groupId>
@@ -117,11 +117,11 @@
                 <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
                 <version>1.0.0.CR4</version>
             </dependency>
-             <dependency>
-            <groupId>org.glassfish.main.extras</groupId>
-            <artifactId>glassfish-embedded-web</artifactId>
-            <version>3.1.2</version>
-        </dependency>
+            <dependency>
+                <groupId>org.glassfish.main.extras</groupId>
+                <artifactId>glassfish-embedded-web</artifactId>
+                <version>3.1.2</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <build>

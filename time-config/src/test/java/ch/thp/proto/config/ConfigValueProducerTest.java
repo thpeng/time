@@ -16,11 +16,13 @@
 package ch.thp.proto.config;
 
 import ch.thp.proto.config.domain.ConfigEntry;
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.Archive;
+import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.asset.ByteArrayAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
 import org.junit.Test;
@@ -33,17 +35,22 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class ConfigValueProducerTest {
 
+    @Inject
     @ConfigValue("key.one")
     private String value;
 
     @Deployment
-    public static Archive<?> createDeployment() {
+    public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class, "test.jar")
                 .addPackage(ConfigValueProducer.class.getPackage())
                 .addClass(ConfigEntry.class)
                 .addClass(ConfigTestSupportBean.class)
                 .addAsResource("test-persistence.xml", "META-INF/persistence.xml")
-                .addAsResource(EmptyAsset.INSTANCE, "beans.xml");
+                .addAsResource("log4j.properties", "log4j.properties")
+                .addAsManifestResource(
+                        new ByteArrayAsset("<beans/>".getBytes()),
+                        ArchivePaths.create("beans.xml"));
+
     }
 
     @Test
