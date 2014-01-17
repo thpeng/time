@@ -1,0 +1,13 @@
+<form role="form">
+    <input type="text" class="form-control" id="inputEmail3"
+           placeholder="{{ 'LOGIN_EMAIL_ADDRESS'  }}"
+           autofocus ng-model="username" required autofocus>
+
+    <input type="password" class="form-control" id="inputPassword3"
+           placeholder="{{ 'LOGIN_PASSWORD' }}"
+           ng-model="password">
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="login()" >
+        LOGIN_SIGN_IN
+    </button>
+</form>
