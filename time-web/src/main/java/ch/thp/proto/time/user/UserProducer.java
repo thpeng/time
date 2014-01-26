@@ -16,28 +16,35 @@
 package ch.thp.proto.time.user;
 
 import ch.thp.proto.time.user.domain.User;
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  *
  * @author Thierry
  */
-@RequestScoped
+@ApplicationScoped
+@Slf4j
 public class UserProducer {
-    
+
     @Inject
-    private MockUserDatabase database; 
+    private MockUserDatabase database;
 
     private String currentPrincipal;
 
     @Produces
+    @RequestScoped
+    @CurrentUser
     public User produceCurrentUser() {
+        log.debug("producing user ..");
         return database.getUserforUserName(currentPrincipal);
     }
 
-    void setCurrentPrincipal(String name) {
+    public void setCurrentPrincipal(String name) {
+        log.debug("setting name.. "+ name);
         this.currentPrincipal = name;
     }
 }

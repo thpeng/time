@@ -16,15 +16,17 @@
 package ch.thp.proto.time.user.domain;
 
 import javax.enterprise.inject.Vetoed;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  *
  * @author Thierry
  */
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Vetoed
 public class User {
 
@@ -33,14 +35,4 @@ public class User {
     private String givenName;
     private String familyName;
 
-    public User() {
-
-    }
-
-    public User(String uuId, String username, String givenName, String familyName) {
-        this.uuId = uuId;
-        this.username = username;
-        this.givenName = givenName;
-        this.familyName = familyName;
-    }
 }
