@@ -1,11 +1,13 @@
 'use strict';
 
-angular.module('jeapFinance', [
-    'ui.router']
+angular.module('time', [
+    'ui.router',
+    'ngCookies',
+    'LocalStorageModule']
         )
         .config(function($stateProvider, $urlRouterProvider) {
 
-            $urlRouterProvider.otherwise("/customer");
+            $urlRouterProvider.otherwise("/dashboard");
 
             $stateProvider
                     .state('login', {
@@ -13,7 +15,6 @@ angular.module('jeapFinance', [
                         templateUrl: "partials/login.html",
                         controller: 'LoginCtrl'
                     }).state('dashboard', {
-                abstract: true,
                 url: '/dashboard',
                 templateUrl: 'partials/dashboard.html',
                 controller: 'DashboardCtrl',
