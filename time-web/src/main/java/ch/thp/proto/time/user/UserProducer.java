@@ -16,35 +16,34 @@
 package ch.thp.proto.time.user;
 
 import ch.thp.proto.time.user.domain.User;
-import javax.enterprise.context.ApplicationScoped;
+import com.google.common.base.Preconditions;
+import java.security.Principal;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- *
+ * after some failed attemp like the usage of a filter or a jersey provider and 
+ * learning quite a lot about bugs in the current glassfish I finally rembered
+ * that the current principal is injectable. 
  * @author Thierry
  */
-@ApplicationScoped
+@RequestScoped
 @Slf4j
 public class UserProducer {
 
     @Inject
     private MockUserDatabase database;
 
-    private String currentPrincipal;
+    @Inject 
+    private Principal currentPrincipal;
 
     @Produces
-    @RequestScoped
     @CurrentUser
     public User produceCurrentUser() {
-        log.debug("producing user ..");
-        return database.getUserforUserName(currentPrincipal);
-    }
-
-    public void setCurrentPrincipal(String name) {
-        log.debug("setting name.. "+ name);
-        this.currentPrincipal = name;
+        Preconditions.checkNotNull(currentPrincipal);
+        log.debug("producing user .."+currentPrincipal.getName());
+        return database.getUserforUserName(currentPrincipal.getName());
     }
 }

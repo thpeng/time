@@ -25,6 +25,7 @@ import javax.ejb.Singleton;
 
 /**
  * Testsetup. 
+ * poor mans database, aka a map in this case. 
  * @author Thierry
  */
 @Singleton

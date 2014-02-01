@@ -14,7 +14,7 @@ import javax.enterprise.util.Nonbinding;
 import javax.inject.Qualifier;
 
 /**
- * custom qualifier for configuration keys. 
+ * custom qualifier for current user. 
  * @author thierry
  */
 @Qualifier
