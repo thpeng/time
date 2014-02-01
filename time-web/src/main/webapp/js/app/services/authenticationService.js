@@ -30,7 +30,7 @@ angular.module('services.authentication')
             var authdata = localStorageService.get('authdata');
             if (authdata) {
                 var deferredUserFromApi = $q.defer();
-                $http.get("user/current").then(
+                $http.get("rest/user/current").then(
                     function (response) {
                         currentUser = response.data;
                         $rootScope.currentUser = currentUser;
