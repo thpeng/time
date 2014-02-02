@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ch.thp.proto.time.user.domain;
 
-import javax.enterprise.inject.Vetoed;
+package ch.thp.proto.time.resources.errorhandling;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,12 +27,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Vetoed
-public class User {
-
-    private String uuId;
-    private String username;
-    private String givenName;
-    private String familyName;
-
+public class RestError {
+    private int status; 
+    private String msgKey; 
+    private String msgForUser; 
+    private String developerHint; 
 }

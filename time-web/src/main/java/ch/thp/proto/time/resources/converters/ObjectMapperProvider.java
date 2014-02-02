@@ -13,24 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ch.thp.proto.time.errorhandling;
 
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.ext.ExceptionMapper;
+package ch.thp.proto.time.resources.converters;
+
+import javax.ws.rs.ext.ContextResolver;
 import javax.ws.rs.ext.Provider;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.joda.JodaModule;
+import lombok.extern.slf4j.Slf4j;
+
+
 
 @Provider
-public class RuntimeExceptionMapper implements ExceptionMapper<RuntimeException> {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(RuntimeExceptionMapper.class);
+@Slf4j
+public class ObjectMapperProvider implements ContextResolver<ObjectMapper> {
     
-    @Override
-    public Response toResponse(RuntimeException e) {
-        LOGGER.debug("converting exception ", e);
-        return Response.status(500).entity("{\"errorcode\":\"CRITICAL_ERROR\",\"cause:+"+e.getCause()+"}").type(MediaType.APPLICATION_JSON).build();
+    public ObjectMapperProvider()
+    {
+        log.debug("objectmapperprovider picked up");
     }
-
+    @Override
+    public ObjectMapper getContext(Class<?> type) {
+        log.debug("registering jackson / jodamodule");
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JodaModule());
+        return mapper; 
+    }
 }

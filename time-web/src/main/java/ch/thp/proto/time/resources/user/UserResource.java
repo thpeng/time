@@ -13,18 +13,37 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package ch.thp.proto.time.resources.user;
 
-package ch.thp.proto.time.errorhandling;
-
-import lombok.Getter;
-import lombok.Setter;
+import ch.thp.proto.time.user.CurrentUser;
+import ch.thp.proto.time.user.domain.User;
+import com.google.common.base.Preconditions;
+import javax.inject.Inject;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
 
 /**
  *
  * @author Thierry
  */
-@Getter
-@Setter
-public class RestError {
-    
+@Path("user")
+public class UserResource {
+
+    @Inject
+    @CurrentUser
+    private User user;
+
+    @GET
+    public String get() {
+        Preconditions.checkNotNull(user.getGivenName());
+        return "bla";
+    }
+
+    @Path("current")
+    @GET
+    public String getCurrentUser() {
+
+        return user.getGivenName();
+    }
+
 }

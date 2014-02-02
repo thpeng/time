@@ -6,13 +6,13 @@
 
 package ch.thp.time.stamp.domain;
 
-import ch.thp.time.utilties.database.LocalDateConverter;
+import ch.thp.proto.time.user.domain.UserId;
 import ch.thp.time.utilties.database.DurationConverter;
+import ch.thp.time.utilties.database.LocalDateConverter;
 import javax.persistence.Convert;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.joda.time.Duration;
 import org.joda.time.LocalDate;
 
@@ -20,13 +20,13 @@ import org.joda.time.LocalDate;
  *
  * @author Thierry
  */
-@Entity
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class TimesheetEntry {
     
-    @Id
     private String uuId;
+    private UserId userId; 
     @Convert(converter = DurationConverter.class)
     private Duration duration; 
     @Convert(converter = LocalDateConverter.class)

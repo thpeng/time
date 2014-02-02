@@ -13,37 +13,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ch.thp.proto.time.user;
+package ch.thp.proto.time.sec;
 
-import ch.thp.proto.time.user.domain.User;
 import com.google.common.base.Preconditions;
-import java.security.Principal;
+import com.google.common.collect.Sets;
+import java.util.Set;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * after some failed attemp like the usage of a filter or a jersey provider and 
+ * after some failed attempts like the usage of a filter or a jersey provider and 
  * learning quite a lot about bugs in the current glassfish I finally rembered
  * that the current principal is injectable. 
  * @author Thierry
  */
 @RequestScoped
 @Slf4j
-public class UserProducer {
+public class RolesProducer {
 
     @Inject
-    private MockUserDatabase database;
-
-    @Inject 
-    private Principal currentPrincipal;
+    private HttpServletRequest req;
 
     @Produces
-    @CurrentUser
-    public User produceCurrentUser() {
-        Preconditions.checkNotNull(currentPrincipal);
-        log.debug("producing user .."+currentPrincipal.getName());
-        return database.getUserforUserName(currentPrincipal.getName());
+    public Set<ApplicationRoles> produceCurrentUser() {
+        Preconditions.checkNotNull(req);
+        Set<ApplicationRoles> resultingRoles = Sets.newHashSet();
+        for(ApplicationRoles role : ApplicationRoles.values())
+        {
+            if(req.isUserInRole(role.toString().toLowerCase()))
+            {
+                resultingRoles.add(role);
+            }
+        }
+        log.debug("producing roles .."+resultingRoles);
+        return resultingRoles;
     }
-}
+    }

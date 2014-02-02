@@ -10,7 +10,8 @@
 
     <artifactId>time-base</artifactId>
     <packaging>jar</packaging>
-    <name>Time Utilities Module</name>
+    <name>Time Base Module</name>
+    <description>Contains the User mgmt, some basic converters. May be used by any module.</description>
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -25,7 +26,7 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
         </dependency>
- <dependency>
+        <dependency>
             <groupId>org.jboss.spec</groupId>
             <artifactId>jboss-javaee-all-7.0</artifactId>
             <scope>provided</scope>

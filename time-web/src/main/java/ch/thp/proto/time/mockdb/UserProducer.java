@@ -13,37 +13,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ch.thp.proto.time.user.resource;
+package ch.thp.proto.time.mockdb;
 
 import ch.thp.proto.time.user.CurrentUser;
 import ch.thp.proto.time.user.domain.User;
 import com.google.common.base.Preconditions;
+import java.security.Principal;
+import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- *
+ * after some failed attempts like the usage of a filter or a jersey provider and 
+ * learning quite a lot about bugs in the current glassfish I finally rembered
+ * that the current principal is injectable. 
  * @author Thierry
  */
-@Path("user")
-public class UserResource {
+@RequestScoped
+@Slf4j
+public class UserProducer {
 
     @Inject
+    private MockDatabase database;
+
+    @Inject 
+    private Principal currentPrincipal;
+    
+    @Produces
     @CurrentUser
-    private User user;
-
-    @GET
-    public String get() {
-        Preconditions.checkNotNull(user.getGivenName());
-        return "bla";
+    public User produceCurrentUser() {
+        Preconditions.checkNotNull(currentPrincipal);
+        log.debug("producing user .."+currentPrincipal.getName());
+        return database.getUserforUserName(currentPrincipal.getName());
     }
-
-    @Path("current")
-    @GET
-    public String getCurrentUser() {
-
-        return user.getGivenName();
-    }
-
 }

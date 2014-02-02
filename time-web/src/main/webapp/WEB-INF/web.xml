@@ -11,7 +11,7 @@
       
         <init-param>
             <param-name>jersey.config.server.provider.packages</param-name>
-            <param-value>ch.thp.proto.time.user.resource</param-value>
+            <param-value>ch.thp.proto.time.resources</param-value>
         </init-param>
           <load-on-startup>1</load-on-startup>
     </servlet>
