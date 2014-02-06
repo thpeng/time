@@ -1,5 +1,7 @@
 'use strict';
 
 angular.module('time')
-    .controller('DashboardCtrl', ['$scope', '$http', function ($scope, $http) {
+    .controller('DashboardCtrl', ['$scope', 'timesheet', function ($scope, timesheet) {
+           $scope.timesheet = timesheet;
+            
     }]);

@@ -51,7 +51,6 @@ public class TimeStampResource {
 
     @GET
     @Produces("application/json")
-
     public List<TimesheetEntry> getAll() {
         return db.getTimeSheetEntries(current.getUserId());
 
