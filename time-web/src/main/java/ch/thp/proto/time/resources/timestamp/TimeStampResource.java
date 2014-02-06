@@ -24,6 +24,7 @@ import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 
 /**
  *
@@ -39,14 +40,18 @@ public class TimeStampResource {
     @CurrentUser
     private User current;
 
-    @GET
-    @Path("{tsid}")
-    public void getSingleTimeStamp(@PathParam("tsid") String tsid) {
-//        UserId id = new User
+//    @GET
+//    @Path("{tsid}")
+//    @Produces("application/json")
+//
+//    public void getSingleTimeStamp(@PathParam("tsid") String tsid) {
+////        UserId id = new User
+//
+//    }
 
-    }
-
     @GET
+    @Produces("application/json")
+
     public List<TimesheetEntry> getAll() {
         return db.getTimeSheetEntries(current.getUserId());
 

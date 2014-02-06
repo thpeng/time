@@ -21,6 +21,7 @@ import com.google.common.base.Preconditions;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 
 /**
  *
@@ -41,6 +42,7 @@ public class UserResource {
 
     @Path("current")
     @GET
+    @Produces("application/json")
     public String getCurrentUser() {
 
         return user.getGivenName();

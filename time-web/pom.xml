@@ -56,6 +56,14 @@
             <groupId>com.fasterxml.jackson.jaxrs</groupId>
             <artifactId>jackson-jaxrs-json-provider</artifactId>
         </dependency>
+        <!--now, that is really bad to compile against a server. However, there is currently no other
+        way to disable moxy (which does not work with joda) and replace it with jackson
+        see http://stackoverflow.com/questions/20709827/force-glassfish-4-to-use-jackson-2-3 --> 
+        <dependency>
+            <groupId>org.glassfish.main.extras</groupId>
+            <artifactId>glassfish-embedded-web</artifactId>
+            <scope>provided</scope>
+        </dependency>
             
     </dependencies>
     <build>
