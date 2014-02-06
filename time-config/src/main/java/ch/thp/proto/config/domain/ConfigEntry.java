@@ -5,22 +5,18 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
-import lombok.Getter;
-import lombok.Setter;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  *
  * @author Thierry
  */
 @Entity
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor()
 @NamedQuery(name="configEntry.getByKey",query="Select x from ConfigEntry x where x.configKey =:key")
 public class ConfigEntry implements Serializable{
     
@@ -30,12 +26,4 @@ public class ConfigEntry implements Serializable{
     private String configValue; 
     private String description;
 
-    public ConfigEntry(String configKey, String configValue, String description) {
-        this.configKey = configKey;
-        this.configValue = configValue;
-        this.description = description;
-    }
-
-    public ConfigEntry() {
-    }
 }

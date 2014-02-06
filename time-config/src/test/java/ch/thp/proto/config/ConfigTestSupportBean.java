@@ -37,8 +37,7 @@ public class ConfigTestSupportBean {
 
     @PostConstruct
     public void initTest() {
-        ConfigEntry configString = new ConfigEntry("key.one", "value.one", "desc.one");
-        configString.setUuId("1111-2222-3333-4444");
+        ConfigEntry configString = new ConfigEntry("1111-2222-3333-4444","key.one", "value.one", "desc.one");
         em.persist(configString);
     }
 
