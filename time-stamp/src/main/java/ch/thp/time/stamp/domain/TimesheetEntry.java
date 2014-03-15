@@ -9,7 +9,12 @@ package ch.thp.time.stamp.domain;
 import ch.thp.proto.time.user.domain.UserId;
 import ch.thp.time.utilties.database.DurationConverter;
 import ch.thp.time.utilties.database.LocalDateConverter;
+import java.io.Serializable;
+import javax.enterprise.inject.Vetoed;
 import javax.persistence.Convert;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.NamedQuery;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,9 +28,13 @@ import org.joda.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TimesheetEntry {
+@Entity
+@Vetoed
+@NamedQuery(name = "timesheet.forUserId", query = "SELECT t FROM TimesheetEntry t where t.userId = :id")
+public class TimesheetEntry implements Serializable {
     
-    private String uuId;
+    @EmbeddedId
+    private TimesheetEntryId Id;
     private UserId userId; 
     @Convert(converter = DurationConverter.class)
     private Duration duration; 
