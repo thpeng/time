@@ -15,7 +15,16 @@
  */
 package ch.thp.proto.time.user.domain;
 
+import java.io.Serializable;
+import java.util.Set;
 import javax.enterprise.inject.Vetoed;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,14 +34,22 @@ import lombok.NoArgsConstructor;
  * @author Thierry
  */
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Vetoed
-public class User {
+@Entity
+@Table(name = "TIME_USER")
+@NamedQuery(name = "user.getByUsername", query = "SELECT u FROM BallbotscheUser u WHERE u.username = :uname")
+public class User implements Serializable {
 
-    private UserId userId; 
+    @EmbeddedId
+    private UserId userId;
     private String username;
-    private String givenName;
-    private String familyName;
+    private String password;
+    //todo salt it. 
+//    private String salt; 
+    @ManyToMany
+    @JoinTable(name = "USER_GROUPS")
+    private Set<Group> groups;
+    
 
 }
