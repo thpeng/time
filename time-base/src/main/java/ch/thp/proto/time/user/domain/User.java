@@ -35,6 +35,7 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Vetoed
 @Entity
 @Table(name = "TIME_USER")
