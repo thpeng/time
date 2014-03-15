@@ -39,7 +39,7 @@ import lombok.NoArgsConstructor;
 @Vetoed
 @Entity
 @Table(name = "TIME_USER")
-@NamedQuery(name = "user.getByUsername", query = "SELECT u FROM BallbotscheUser u WHERE u.username = :uname")
+@NamedQuery(name = "user.getByUsername", query = "SELECT u FROM User u WHERE u.username = :uname")
 public class User implements Serializable {
 
     @EmbeddedId

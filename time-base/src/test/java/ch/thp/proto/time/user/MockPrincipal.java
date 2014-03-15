@@ -14,21 +14,23 @@
  * limitations under the License.
  */
 
-package ch.thp.proto.time.user.domain;
+package ch.thp.proto.time.user;
 
-import javax.persistence.Embeddable;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
+import java.security.Principal;
+import javax.enterprise.inject.Alternative;
+import javax.enterprise.inject.Specializes;
 
 /**
  *
  * @author Thierry
  */
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Embeddable
-public class UserId {
-      private String userId;
+@Alternative
+@Specializes
+public class MockPrincipal implements Principal {
+
+    @Override
+    public String getName() {
+        return "ned.stark";
+    }
+    
 }

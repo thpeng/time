@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ch.thp.time.dataloader;
+package ch.thp.proto.time.hash;
 
 import com.google.common.io.BaseEncoding;
 import java.security.MessageDigest;

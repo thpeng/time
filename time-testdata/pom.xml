@@ -16,7 +16,7 @@
             <groupId>ch.thp.proto</groupId>
             <artifactId>time-base</artifactId>
         </dependency>
-                <dependency>
+        <dependency>
             <groupId>ch.thp.proto</groupId>
             <artifactId>time-stamp</artifactId>
         </dependency>
