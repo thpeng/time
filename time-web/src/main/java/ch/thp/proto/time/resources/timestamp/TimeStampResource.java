@@ -15,15 +15,14 @@
  */
 package ch.thp.proto.time.resources.timestamp;
 
-import ch.thp.proto.time.mockdb.MockDatabase;
 import ch.thp.proto.time.user.CurrentUser;
 import ch.thp.proto.time.user.domain.User;
+import ch.thp.time.stamp.TimeSheetBean;
 import ch.thp.time.stamp.domain.TimesheetEntry;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 /**
@@ -34,25 +33,17 @@ import javax.ws.rs.Produces;
 public class TimeStampResource {
 
     @Inject
-    private MockDatabase db;
+    private TimeSheetBean db;
 
     @Inject
     @CurrentUser
     private User current;
 
-//    @GET
-//    @Path("{tsid}")
-//    @Produces("application/json")
-//
-//    public void getSingleTimeStamp(@PathParam("tsid") String tsid) {
-////        UserId id = new User
-//
-//    }
 
     @GET
     @Produces("application/json")
     public List<TimesheetEntry> getAll() {
-        return db.getTimeSheetEntries(current.getUserId());
+        return db.getEntriesForUserId(current.getUserId());
 
     }
 }

@@ -41,6 +41,10 @@
             <artifactId>time-stamp</artifactId>
         </dependency>
         <dependency>
+            <groupId>ch.thp.proto</groupId>
+            <artifactId>time-testdata</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-joda</artifactId>
         </dependency>

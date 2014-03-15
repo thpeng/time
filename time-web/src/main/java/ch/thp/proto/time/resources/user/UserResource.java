@@ -36,7 +36,7 @@ public class UserResource {
 
     @GET
     public String get() {
-        Preconditions.checkNotNull(user.getGivenName());
+        Preconditions.checkNotNull(user.getUsername());
         return "bla";
     }
 
@@ -45,7 +45,7 @@ public class UserResource {
     @Produces("application/json")
     public String getCurrentUser() {
 
-        return user.getGivenName();
+        return user.getUsername();
     }
 
 }
