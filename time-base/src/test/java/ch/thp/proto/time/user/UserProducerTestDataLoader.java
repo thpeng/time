@@ -43,8 +43,7 @@ public class UserProducerTestDataLoader {
     public void initTest() {
                 Group applicationUsers = new Group("1111-1111", "standard", "can use the application");
         em.persist(applicationUsers);
-        //pw: test1
-        User userone = new User(new UserId("1111-2222"), "ned.stark", Utils.hash("test1", "SHA-256"), Sets.newHashSet(applicationUsers));
+        User userone = new User(new UserId("1111-2222"), "ANONYMOUS", Utils.hash("test1", "SHA-256"), Sets.newHashSet(applicationUsers));
         em.persist(userone);
     }
 

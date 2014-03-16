@@ -38,7 +38,7 @@ public class UserProducerTest {
 
     @Inject
     @CurrentUser
-    private User ned;
+    private User user;
 
     @Deployment
     public static JavaArchive createDeployment() {
@@ -47,7 +47,6 @@ public class UserProducerTest {
                 .addPackage(User.class.getPackage())
                 .addClass(Utils.class)
                 .addClass(UserProducerTestDataLoader.class)
-                .addClass(MockPrincipal.class)
                 .addAsResource("userproducer_test_persistence.xml", "META-INF/persistence.xml")
                 .addAsResource("log4j.properties", "log4j.properties")
                 .addAsManifestResource("userproducer_test_beans.xml",
@@ -56,7 +55,10 @@ public class UserProducerTest {
     }
 
     @Test
-    public void testConfigAsString() {
-        Assert.assertEquals("ned.stark", ned.getUsername());
+    public void testInjectCurrentUser() {
+        //a bit of a hack: we cannot mock the built-in principal with cdi tools for example @alternative or @spezialize
+        // we could do a proper jaas login but thats not the point of this test
+        // the built-in default principal is ANONYMOUS, so we reuse this fine lad. 
+        Assert.assertEquals("ANONYMOUS", user.getUsername());
     }
 }

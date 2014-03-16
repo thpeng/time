@@ -33,6 +33,6 @@ public class UserAccessBean {
     private EntityManager em;
 
     public User getUserByUserName(String username) {
-        return em.createNamedQuery("user.getByUsername", User.class).getSingleResult();
+        return em.createNamedQuery("user.getByUsername", User.class).setParameter("uname", username).getSingleResult();
     }
 }

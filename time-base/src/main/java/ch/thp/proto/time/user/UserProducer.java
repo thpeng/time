@@ -1,3 +1,5 @@
+package ch.thp.proto.time.user;
+
 /*
  * Copyright 2014 Thierry.
  *

@@ -1,5 +1,5 @@
 <beans>
-    <alternatives>
+<!--    <alternatives>
         <class>ch.thp.proto.time.user.MockPrincipal</class>
-    </alternatives>
+    </alternatives>-->
 </beans>
