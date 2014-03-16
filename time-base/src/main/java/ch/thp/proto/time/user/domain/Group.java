@@ -23,8 +23,8 @@ import lombok.NoArgsConstructor;
 @Table(name = "TIME_GROUP")
 public class Group implements Serializable{
     @Id
-    private String uuId; 
-    private String name; 
+    private String groupId; 
+    private String groupname; 
     private String description; 
     
 }
