@@ -44,11 +44,15 @@ public class TestDataLoader {
 
     @PostConstruct
     public void init() {
-        Group applicationUsers = new Group("1111-1111", "ballbotscheUser", "can use the application");
+        //reminder.. roles != groups
+        //mapping of groups into roles made with the glassfish-web-app.xml
+        Group applicationUsers = new Group("1111-1111", "standard", "can use the application");
+        Group applicationAdmins = new Group("1111-1111", "admin", "can use the application");
+        Group appSuperUsers = new Group("1111-1111", "super", "can use the application");
         em.persist(applicationUsers);
-        //pw: test1
+        em.persist(applicationAdmins);
+        em.persist(appSuperUsers);
         User userone = new User(new UserId("1111-2222"), "ned.stark", Utils.hash("test1", "SHA-256"), Sets.newHashSet(applicationUsers));
-        //pw: test1                                                                                           
         User usertwo = new User(new UserId("2222-2222"), "john.snow", Utils.hash("test1", "SHA-256"), Sets.newHashSet(applicationUsers));
         em.persist(new TimesheetEntry(new TimesheetEntryId(UUID.randomUUID().toString()), userone.getUserId(), Duration.standardMinutes(230), LocalDate.parse("2014-01-01"), "did something"));
         em.persist(new TimesheetEntry(new TimesheetEntryId(UUID.randomUUID().toString()), userone.getUserId(), Duration.standardMinutes(30), LocalDate.parse("2014-01-01"), "did more"));
